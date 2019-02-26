@@ -70,19 +70,20 @@ namespace Lab7
                 db.Remove(eToRemove);
                 db.SaveChanges();
 
+                // Add new transfer student
                 Student newStudent = new Student {FirstName = "Jack", LastName = "Daniels"};
                 db.Add(newStudent);
                 db.SaveChanges();
 
-                // Student studentToAdd = db.Students.Where(s => s.FirstName == "Jack");
-                // Course courseToAdd = db.Courses.Where(c => c.CourseName == "CIS");
-                // Enrollment newEnroll = new Enrollment {
-                // Student = studentToAdd, // This is Employee A
-                // Course = courseToAdd // This is Project 2
-                // };
-                // db.Add(newEnroll);
-                // db.SaveChanges();
-
+                
+                Course courseToAdd = db.Courses.Where(c => c.CourseName == "CIS").First();
+                Enrollment newEnroll = new Enrollment {
+                Student = newStudent, 
+                Course = courseToAdd,
+                GPA = 2.5
+                };
+                db.Add(newEnroll);
+                db.SaveChanges();
             }
             List();
         }
